@@ -1,24 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import Caja from "./containers/Caja";
+import styled from 'styled-components'
+import { Container } from "@chakra-ui/layout";
+import 'bootstrap/dist/css/bootstrap.min.css';
+const StyledContainer = styled(Container)`
+  padding-top:5%;
+`
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledContainer>
+        <Caja/>
+    </StyledContainer>
   );
 }
 
