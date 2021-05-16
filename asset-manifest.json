@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.js": "./static/js/main.0d52abed.chunk.js",
+    "main.js.map": "./static/js/main.0d52abed.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.fde34170.js",
+    "runtime-main.js.map": "./static/js/runtime-main.fde34170.js.map",
+    "static/css/2.4c97ca4f.chunk.css": "./static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.4889a91e.chunk.js": "./static/js/2.4889a91e.chunk.js",
+    "static/js/2.4889a91e.chunk.js.map": "./static/js/2.4889a91e.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/2.4c97ca4f.chunk.css.map": "./static/css/2.4c97ca4f.chunk.css.map",
+    "static/js/2.4889a91e.chunk.js.LICENSE.txt": "./static/js/2.4889a91e.chunk.js.LICENSE.txt",
+    "static/media/do.0b23a298.flac": "./static/media/do.0b23a298.flac",
+    "static/media/do.d2273d93.wav": "./static/media/do.d2273d93.wav",
+    "static/media/fa.14b98b6e.flac": "./static/media/fa.14b98b6e.flac",
+    "static/media/fa.a16b1b61.wav": "./static/media/fa.a16b1b61.wav",
+    "static/media/la.3e648b73.wav": "./static/media/la.3e648b73.wav",
+    "static/media/la.d5c7e9ed.flac": "./static/media/la.d5c7e9ed.flac",
+    "static/media/mi.24986a53.flac": "./static/media/mi.24986a53.flac",
+    "static/media/mi.bc4ecd07.wav": "./static/media/mi.bc4ecd07.wav",
+    "static/media/re.b5b5c3d7.wav": "./static/media/re.b5b5c3d7.wav",
+    "static/media/re.ddf6852f.flac": "./static/media/re.ddf6852f.flac",
+    "static/media/si.857a0695.wav": "./static/media/si.857a0695.wav",
+    "static/media/si.9cd9ddde.flac": "./static/media/si.9cd9ddde.flac",
+    "static/media/sol.3c05854f.flac": "./static/media/sol.3c05854f.flac",
+    "static/media/sol.5585441e.wav": "./static/media/sol.5585441e.wav"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fde34170.js",
+    "static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.4889a91e.chunk.js",
+    "static/js/main.0d52abed.chunk.js"
+  ]
+}
