@@ -23,6 +23,11 @@ const StyledGrid = styled(Grid)`
     background: #2b2e3acc;
     padding: 2%;
     border-radius: 15px;
+
+    @media screen and (max-width: 480px) {
+        grid-template-columns: repeat(3,1fr) !important;
+        padding-bottom: 30px;
+    }
 `
 
 const StyledBox = styled(Button)`
@@ -37,6 +42,10 @@ const StyledBox = styled(Button)`
     font-size: 30px !important;
     &:active{
         background-color: #5bb7ec !important;
+    }
+    @media screen and (max-width: 480px) {
+        height: 100% !important;
+        margin-bottom: 90%;
     }
 `
 
@@ -63,7 +72,7 @@ class Caja extends Component {
 
     cargarSonido = (fuente, i) => {
         var sonido = document.getElementById(i).getElementsByClassName('clip');
-        //sonido[i].src = fuente
+        sonido[i].src = fuente
         sonido[i].muted = this.state.encendido
         sonido[i].volume = this.state.volumen
         sonido[i].play()
@@ -130,7 +139,7 @@ class Caja extends Component {
                                     /*eslint-enable-next-line */
                                     this.handleClickSonar(nota.id, nota.nombreNota)
                             }} >{nota.name}
-                                <audio id={nota.id} src={nota.sonido[this.state.instrumento]} className="clip" />
+                                <audio id={nota.id} className="clip" />
                             </StyledBox>
                         )
                     })}

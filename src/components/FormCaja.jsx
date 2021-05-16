@@ -32,16 +32,29 @@ const StyledButton = styled(Button)`
     &:active{
         background-color: #5bb7ec !important;
     }
+
+     @media screen and (max-width: 480px) {
+        width: 155% !important;
+        height: 90% !important;
+    }
 `
 
 const StyledFormLabel = styled(FormLabel)`
     font-size :23px !important;
 `
 
+const StyledGrid = styled(Grid)`
+     @media screen and (max-width: 480px) {
+        grid-template-rows: repeat(3, 1fr) !important;
+        grid-template-columns: repeat(4, 4fr) !important;
+        height :270px !important;       
+}
+`
+
 function FormCaja(props) {
     return (
         <StyledForm id="display">
-            <Grid
+            <StyledGrid
                 h="150px"
                 templateRows="repeat(2, 1fr)"
                 templateColumns="repeat(5, 1fr)"
@@ -61,14 +74,14 @@ function FormCaja(props) {
                     <StyledButton onClick={(e) => {
                         props.onClick(e, 0)
                     }}>
-                        Cambiar a guitarra
+                        Guitarra
                     </StyledButton >
                 </StyledGridItem>
                 <StyledGridItem colSpan={2} >
                     <StyledButton onClick={(e) => {
                         props.onClick(e, 1)
                     }}>
-                        Cambiar a piano
+                        Piano
                     </StyledButton>
                 </StyledGridItem>
                 <StyledGridItem colSpan={4} bg="#808080">
@@ -76,7 +89,7 @@ function FormCaja(props) {
                         {props.nombre}
                     </StyledText>
                 </StyledGridItem>
-            </Grid>
+            </StyledGrid>
         </StyledForm>
     )
 }
