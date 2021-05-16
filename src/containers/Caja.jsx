@@ -1,159 +1,143 @@
-import { Box, Center, Container } from '@chakra-ui/layout'
+import { Container, Heading } from '@chakra-ui/layout'
 import { Grid } from '@chakra-ui/layout'
-import { Button, ChakraProvider, Switch, Row, Col, FormControl, FormLabel } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Form } from "react-bootstrap";
 
-/*import sonido1 from '../sounds/guitar/do.flac'
-import sonido2 from '../sounds/guitar/re.flac'
-import sonido3 from '../sounds/guitar/mi.flac'
-import sonido4 from '../sounds/guitar/fa.flac'
-import sonido5 from '../sounds/guitar/sol.flac'
-import sonido6 from '../sounds/guitar/la.flac'
-import sonido7 from '../sounds/guitar/si.flac'
-import sonido8 from '../sounds/guitar/do.flac'*/
-
-//import Nota from "../components/Nota";
 import notas from '../bdNotas'
-localStorage.setItem('notaMusical', "do")
-localStorage.setItem('volumen', 0)
 
-const StyledBox = styled(Box)`
-    background-color: #89ec5b;
+import FormCaja from '../components/FormCaja'
+
+localStorage.setItem('notaMusical', "do")
+localStorage.setItem('volumen', 0.3)
+
+const StyledContainer = styled(Container)`
+    max-width: 135ch !important;
+    width:90%;
+    padding: 5%;
+    padding-bottom: 2%;
+    border-radius: 15px;
+`
+
+const StyledGrid = styled(Grid)`
+    background: #2b2e3acc;
+    padding: 2%;
+    border-radius: 15px;
+`
+
+const StyledBox = styled(Button)`
+    
     box-shadow: black 3px 3px 5px;
-    height: 80px;
+    height: 170px !important;
     margin-right: 10px;
     border-radius: 5px;
-    padding-top: 35px;
     box-sizing: border-box;
     cursor: pointer;
     text-align: center;
-    //width:100px;
+    font-size: 30px !important;
     &:active{
-        background-color: #5bb7ec;
+        background-color: #5bb7ec !important;
     }
-`
-const StyledGrid = styled(Grid)`
-    background: #89ec5b;
-    padding: 5%;
-    border-radius: 15px;
-    //width:108%;
-`
-const StyledContainer = styled(Container)`
-    background:pink;
-    width:90%;
-    padding: 5%;
 `
 
 class Caja extends Component {
-
     constructor() {
         super()
         this.state = {
             nota: null,
             instrumento: 0,
-            volumen: 0.8,
-            encendido: false
+            volumen: 0.3,
+            encendido: false,
+            nombreNota: ""
         }
         this.handleClickSonar = this.handleClickSonar.bind(this);
     }
-    fetchNotaData = () => {
+
+    handleClickSonar(i, n) {
         this.setState({
-            nota: localStorage.getItem('notaMusical')
+            nota: localStorage.getItem('notaMusical'),
+            nombreNota: n
         })
+        this.cargarSonido(localStorage.getItem("notaMusical"), i);
     }
 
-    cargarSonido = (fuente) => {
-        var sonido = document.createElement("audio")
-        sonido.src = fuente
-        sonido.style.display = "none"
-        sonido.muted = this.state.encendido
-        sonido.play()
-        //sonido.setAttribute("controls", "true");
-        sonido.volume = this.state.volumen
+    cargarSonido = (fuente, i) => {
+        var sonido = document.getElementById(i).getElementsByClassName('clip');
+        //sonido[i].src = fuente
+        sonido[i].muted = this.state.encendido
+        sonido[i].volume = this.state.volumen
+        sonido[i].play()
     }
 
-    cambiarVolumen = ({ target }) => {
+    handleChangecambiarVolumen = ({ target }) => {
         localStorage.setItem("volumen", target.value)
         this.setState({
             volumen: parseFloat(localStorage.getItem('volumen'))
         })
     }
 
-    handleClickSonar() {
-        this.fetchNotaData()
-        this.cargarSonido(localStorage.getItem("notaMusical"));
+    handleClickCambiarInstrumento = (e, i) => {
+        this.setState({
+            instrumento: i
+        })
+    }
+
+    handleChangePower = () => {
+        this.setState({
+            encendido: JSON.parse(localStorage.getItem('encendido')),
+        })
+    }
+
+    handleKeyDown = (event) => {
+        var ESCAPE_KEY = 0;
+        notas.map(nota => {
+            ESCAPE_KEY = nota.keyCode
+            switch (event.keyCode) {
+                case ESCAPE_KEY:
+                    var element = document.getElementById(`${nota.id}`)
+                    element.click()
+                    var element2 = document.getElementById(`${nota.id}`).style.backgroundColor
+                    if (element2 === "rgb(237, 242, 247)") {
+                        document.getElementById(`${nota.id}`).style.backgroundColor = 'rgb(91, 183, 236)';
+                    } else {
+                        document.getElementById(`${nota.id}`).style.backgroundColor = '#edf2f7';
+                    }
+                    break;
+                default:
+                    break;
+            }
+        })
+    }
+
+    componentDidMount() {
+        document.addEventListener("keydown", this.handleKeyDown);
+    }
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.handleKeyDown);
     }
 
     render() {
         return (
-            <ChakraProvider>
-                <Center>
-                    <StyledContainer>
-                        <Form>
-                            <Form.Group controlId="formBasicRangeCustom" >
-                                <FormControl display="flex" alignItems="center" justifyContent="center">
-                                    <FormLabel htmlFor="email-alerts" mb="0">
-                                        On / Of
-                                    </FormLabel>
-                                    <Switch colorScheme="teal" size="lg" defaultChecked onChange={() => {
-                                        this.setState({
-                                            encendido: !this.state.encendido,
-                                        })
-                                    }} />
-                                    <Button marginRight="3%" marginLeft="3%" marginBottom="5%" onClick={() => {
-                                        this.setState({
-                                            instrumento: 0
-                                        })
-                                    }}>
-                                        Cambiar a guitarra
-                                    </Button >
-                                    <Button marginBottom="5%" marginRight="3%" onClick={() => {
-                                        this.setState({
-                                            instrumento: 1
-                                        })
-                                    }}>
-                                        Cambiar a piano
-                                    </Button>
-                                </FormControl>
-                                <Form.Label>Volumen</Form.Label>
-                                <Form.Control type="range" min="0" max="1" step="0.01" onChange={this.cambiarVolumen} custom />
-                            </Form.Group>
-                        </Form>
-                        <StyledGrid templateColumns="repeat(3, 1fr)" gap={6}>
-                            {notas.map(nota => {
-                                return (
-                                    <StyledBox key={nota.id} id={nota.id} onClick={() => {
-                                        /* eslint-disable-next-line */
-                                        localStorage.setItem('notaMusical', nota.sonido[this.state.instrumento]),
-                                            /*eslint-enable-next-line */
-                                            this.handleClickSonar()
-                                    }}>{nota.name}
-                                    </StyledBox>
-                                )
-                            })}
-                            <Box>:)</Box>
-                        </StyledGrid>
-                    </StyledContainer>
-                </Center>
-            </ChakraProvider>
+            <StyledContainer id="drum-machine" >
+                <Heading textAlign="center" mb="9">Caja de ritmos</Heading>
+                <FormCaja estado={this.state.encendido} cambiarEstado={this.handleChangePower} onChange={this.handleChangecambiarVolumen} onClick={this.handleClickCambiarInstrumento} nombre={this.state.nombreNota} />
+                <StyledGrid templateColumns="repeat(9, 1fr)" gap={6} onKeyPress={this.handleKeyPress}>
+                    {notas.map(nota => {
+                        return (
+                            <StyledBox key={nota.id} id={nota.id} className="drum-pad" onClick={() => {
+                                /* eslint-disable-next-line */
+                                localStorage.setItem('notaMusical', nota.sonido[this.state.instrumento]),
+                                    /*eslint-enable-next-line */
+                                    this.handleClickSonar(nota.id, nota.nombreNota)
+                            }} >{nota.name}
+                                <audio id={nota.id} src={nota.sonido[this.state.instrumento]} className="clip" />
+                            </StyledBox>
+                        )
+                    })}
+                </StyledGrid>
+            </StyledContainer>
         )
     }
 }
 
 export default Caja
-/*
-<StyledBox id={nota.id} onClick={() => {
-                                    localStorage.setItem('notaMusical', `${nota.sonido[1]}`)
-                                    this.handleClickSonar
-                                }} >{nota.name}</StyledBox>
-
-
-<StyledBox onClick={sonarRe}>Re</StyledBox>
-<StyledBox onClick={sonarMi}>Mi</StyledBox>
-<StyledBox onClick={sonarFa}>Fa</StyledBox>
-<StyledBox onClick={sonarSol}>Sol</StyledBox>
-<StyledBox onClick={sonarLa}>La</StyledBox>
-<StyledBox onClick={sonarSi}>Si</StyledBox>
-<StyledBox onClick={sonarDo2}>Do</StyledBox>*/

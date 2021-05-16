@@ -18,45 +18,67 @@ import sonidopiano8 from '../src/sounds/piano/do.wav'
 
 const notas = [
     {
-        "id": 1,
-        "name": "Do",
-        "sonido": [sonidoguitar1, sonidopiano1]
+        "id": "Q",
+        "name": "Q",
+        "nombreNota": "Do",
+        "sonido": [sonidoguitar1, sonidopiano1],
+        "keyCode": 81
     },
     {
-        "id": 2,
-        "name": "Re",
-        "sonido": [sonidoguitar2, sonidopiano2]
+        "id": "W",
+        "name": "W",
+        "nombreNota": "Re",
+        "sonido": [sonidoguitar2, sonidopiano2],
+        "keyCode": 87
     },
     {
-        "id": 3,
-        "name": "Mi",
-        "sonido": [sonidoguitar3, sonidopiano3]
+        "id": "E",
+        "name": "E",
+        "nombreNota": "Mi",
+        "sonido": [sonidoguitar3, sonidopiano3],
+        "keyCode": 69
     },
     {
-        "id": 4,
-        "name": "Fa",
-        "sonido": [sonidoguitar4, sonidopiano4]
+        "id": "A",
+        "name": "A",
+        "nombreNota": "Fa",
+        "sonido": [sonidoguitar4, sonidopiano4],
+        "keyCode": 65
     },
     {
-        "id": 5,
-        "name": "Sol",
-        "sonido": [sonidoguitar5, sonidopiano5]
+        "id": "S",
+        "name": "S",
+        "nombreNota": "Sol",
+        "sonido": [sonidoguitar5, sonidopiano5],
+        "keyCode": 83
     },
     {
-        "id": 6,
-        "name": "La",
-        "sonido": [sonidoguitar6, sonidopiano6]
+        "id": "D",
+        "name": "D",
+        "nombreNota": "La",
+        "sonido": [sonidoguitar6, sonidopiano6],
+        "keyCode": 68
     },
     {
-        "id": 7,
-        "name": "Si",
-        "sonido": [sonidoguitar7, sonidopiano7]
+        "id": "Z",
+        "name": "Z",
+        "nombreNota": "Si",
+        "sonido": [sonidoguitar7, sonidopiano7],
+        "keyCode": 90
     },
     {
-        "id": 8,
-        "name": "Do2",
-        "sonido": [sonidoguitar8, sonidopiano8]
-    },
+        "id": "X",
+        "name": "X",
+        "nombreNota": "Do2",
+        "sonido": [sonidoguitar8, sonidopiano8],
+        "keyCode": 88
+    }, {
+        "id": "C",
+        "name": "C",
+        "nombreNota": "Re2",
+        "sonido": [sonidoguitar2, sonidopiano2],
+        "keyCode": 67
+    }
 ]
 
 export default notas
